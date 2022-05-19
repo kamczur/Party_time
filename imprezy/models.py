@@ -12,7 +12,7 @@ class Party(models.Model):
 
 class Gift(models.Model):
     gift_name = models.CharField(max_length=255)
-    party = models.ManyToManyField(Party, on_delete=models.CASCADE)
+    party = models.ForeignKey(Party, on_delete=models.CASCADE)
 
 class Guest(models.Model):
     guest_name = models.CharField(max_length=64)
