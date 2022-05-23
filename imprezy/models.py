@@ -1,8 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class User(models.Model):
-    name = models.CharField(max_length=64)
-    surname = models.CharField(max_length=64)
+class Profil(models.Model):
+    profil_name = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.IntegerField()
 
 class Party(models.Model):
     party_name = models.CharField(max_length=255)
@@ -12,7 +13,7 @@ class Party(models.Model):
 
 class Gift(models.Model):
     gift_name = models.CharField(max_length=255)
-    party = models.ForeignKey(Party, on_delete=models.CASCADE)
+    party = models.ManyToManyField(Party)
 
 class Guest(models.Model):
     guest_name = models.CharField(max_length=64)
