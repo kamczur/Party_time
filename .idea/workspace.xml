@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43fca78f-50fa-4342-9769-7e0e01b76d49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/imprezy/templates/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imprezy/templates/homepage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imprezy/templates/logout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imprezy/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9dcdc989-dac5-4835-92ce-58d4b5d7ffd3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9dcdc989-dac5-4835-92ce-58d4b5d7ffd3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imprezy/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imprezy/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imprezy/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/imprezy/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imprezy/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/templates/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imprezy/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_koncowy/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_koncowy/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt_koncowy/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_koncowy/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +90,7 @@
       <updated>1652521635334</updated>
       <workItem from="1652521637453" duration="2180000" />
       <workItem from="1652876722544" duration="11048000" />
-      <workItem from="1653240710988" duration="10301000" />
+      <workItem from="1653240710988" duration="11559000" />
     </task>
     <servers />
   </component>
