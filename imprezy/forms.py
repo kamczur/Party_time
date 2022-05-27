@@ -1,6 +1,10 @@
+from datetime import time, date
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.validators import URLValidator
+
 
 class NewUserForm(UserCreationForm):
 	email = forms.EmailField(required=True)
@@ -15,3 +19,14 @@ class NewUserForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+class AddPartyForm(forms.Form):
+	party_name = forms.CharField(label="Nazwa imprezy")
+	party_date = forms.DateField(label="Data imprezy", input_formats=date)
+	party_time = forms.TimeField(label="Godzina rozpoczęcia imprezy", input_formats=time)
+	description = forms.CharField(label="Opis")
+
+class GiftForm(forms.Form):
+	gift_name = forms.CharField(label="Nazwa prezentu")
+	gift_link = forms.CharField(validators=[URLValidator()], label="link do prezentu")
+	comments = forms.CharField(label="komentarz")

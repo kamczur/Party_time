@@ -1,0 +1,42 @@
+{% extends "header.html" %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+    <table class="table">
+
+  <thead>
+
+    <tr class="d-flex">
+
+      <th scope="col" class="col-1">#</th>
+
+      <th scope="col" class="col-2">Nazwa imprezy</th>
+
+    </tr>
+
+  </thead>
+    <tbody>
+
+    {% for party in parties %}
+
+    <tr class="d-flex">
+
+      <th scope="row" class="col-1">{{ party.id }}</th>
+
+      <td class="col-2">
+
+        <a href="/party/{{ party.id }}/">{{ party.party_name }}</a>
+
+      </td>
+
+        <td class="col-1">
+
+        <a href="/party/details/{{ party.id }}/">Szczegóły</a>
+
+      </td>
+    {% endfor %}
+
+  </tbody>
+
+</table>
+{% endblock %}

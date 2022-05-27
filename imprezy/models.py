@@ -1,14 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Profil(models.Model):
     profil_name = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.IntegerField()
 
 class Party(models.Model):
     party_name = models.CharField(max_length=255)
-    start_date = models.DateTimeField(null=True)
-    end_date = models.DateTimeField(null=True)
+    party_date = models.DateField(null=True)
+    party_time = models.TimeField(null=True)
+    description = models.TextField(null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Gift(models.Model):

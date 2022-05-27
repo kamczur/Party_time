@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from imprezy.views import register_request, homepage, login_request, logout_request
+from imprezy.views import register_request, homepage, login_request, logout_request, AddParty, PartiesListView, AddGift
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +23,7 @@ urlpatterns = [
     path('register/', register_request, name="register"),
     path('login/', login_request, name="login"),
     path('logout/', logout_request, name="logout"),
+    path('add_party/', AddParty.as_view(), name="add-party"),
+    path('party_list/', PartiesListView.as_view(), name="party-list"),
+    path('add_gift/', AddGift.as_view(), name="add-gift"),
 ]

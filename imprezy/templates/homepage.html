@@ -1,17 +1,20 @@
-</body>
-</html>
+{% extends "header.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
 {% load static %}
 <!doctype html>
-        <html>
+        <html lang="en">
             <head>
                 {% block head %}
-                <meta charset="utf-8">
+                <meta charset="utf-8"><title>Zarządzanie imprezami</title>
                 {% endblock %}
             </head>
             <body>
             {% block body %}
-                <h1>Zarządaj swoimi imprezami</h1>
-                {% block content %}{% endblock %}
+                <h1>Zarządzaj swoimi imprezami</h1>
             {% endblock %}
             <footer>
                 {% block footer %}{% endblock %}
@@ -24,3 +27,4 @@
             </footer>
             </body>
         </html>
+{% endblock %}
