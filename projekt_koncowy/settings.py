@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import django-on-heroku
+django-on-heroku.settings(locals())
 
 from pathlib import Path
 
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-!dkgaf69le+wna1d3$#sdk4+5a(29g2--#a*_@=+m2%v5%=^pm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-deployment-demo.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'imprezy',
     'crispy_forms',
+    'herokuapp',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
