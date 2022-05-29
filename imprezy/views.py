@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from .forms import NewUserForm, AddPartyForm, GiftForm
 from .models import Party, Gift
@@ -47,7 +48,9 @@ def logout_request(request):
     messages.info(request, "Wylogowano się poprawnie.")
     return redirect("homepage")
 
-class AddParty(View):
+class AddParty(LoginRequiredMixin, View):
+    login_url = "/login"
+
     def get(self, request):
         form = AddPartyForm()
         return render(request, 'addParty.html', {'form':form})
@@ -59,7 +62,8 @@ class AddParty(View):
             party_date = form.cleaned_data['party_date']
             party_time = form.cleaned_data['party_time']
             description = form.cleaned_data['description']
-            party = Party.objects.create(party_name=party_name, party_date=party_date, party_time=party_time, description=description)
+            user = request.user
+            party = Party.objects.create(party_name=party_name, party_date=party_date, party_time=party_time, description=description, user=user)
             return redirect("party-list", party_id=party.id)
         else:
             return render(request, 'addParty.html', {'form': form})
