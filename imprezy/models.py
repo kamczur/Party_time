@@ -6,6 +6,7 @@ class Profil(models.Model):
     profil_name = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.IntegerField()
 
+
 class Party(models.Model):
     party_name = models.CharField(max_length=255)
     party_date = models.DateField(null=True)

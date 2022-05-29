@@ -22,8 +22,8 @@ class NewUserForm(UserCreationForm):
 
 class AddPartyForm(forms.Form):
 	party_name = forms.CharField(label="Nazwa imprezy")
-	party_date = forms.DateField(label="Data imprezy", input_formats=date)
-	party_time = forms.TimeField(label="Godzina rozpoczęcia imprezy", input_formats=time)
+	party_date = forms.DateField(label="Data imprezy")
+	party_time = forms.TimeField(label="Godzina rozpoczęcia imprezy")
 	description = forms.CharField(label="Opis")
 
 class GiftForm(forms.Form):

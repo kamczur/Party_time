@@ -63,13 +63,14 @@ class AddParty(LoginRequiredMixin, View):
             party_time = form.cleaned_data['party_time']
             description = form.cleaned_data['description']
             user = request.user
-            party = Party.objects.create(party_name=party_name, party_date=party_date, party_time=party_time, description=description, user=user)
-            return redirect("party-list", party_id=party.id)
+            Party.objects.create(party_name=party_name, party_date=party_date, party_time=party_time, description=description, user=user)
+            return redirect("party-list")
         else:
             return render(request, 'addParty.html', {'form': form})
 
 
-class PartiesListView(View):
+class PartiesListView(LoginRequiredMixin, View):
+    login_url = "/login"
     def get(self, request):
         parties = Party.objects.all()
         return render(request, "parties.html", context={"parties": parties})
@@ -90,5 +91,11 @@ class AddGift(View):
             return redirect("gift-list", gift_id=gift.id)
         else:
             return render(request, 'gifts.html', {'form': form})
+
+class DeletePartyView(View):
+    def get(self, request, party_id):
+        party = Party.objects.get(id=party_id)
+        party.delete()
+        return redirect("party-list")
 
 

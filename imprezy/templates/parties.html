@@ -23,15 +23,22 @@
 
       <th scope="row" class="col-1">{{ party.id }}</th>
 
-      <td class="col-2">
-
-        <a href="/party/{{ party.id }}/">{{ party.party_name }}</a>
-
-      </td>
+      <td class="col-2">{{ party.party_name }}</td>
 
         <td class="col-1">
 
-        <a href="/party/details/{{ party.id }}/">Szczegóły</a>
+        <a href="/party_details/{{ party.id }}/">Szczegóły</a>
+
+      </td>
+              <td class="col-1">
+
+        <a href="/party_modify/{{ party.id }}/">Edytuj</a>
+
+      </td>
+
+      <td class="col-1">
+
+        <a href="/party_delete/{{ party.id }}/">Usuń</a>
 
       </td>
     {% endfor %}
