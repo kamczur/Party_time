@@ -1,5 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from django.views.generic import detail
+
 from .forms import NewUserForm, AddPartyForm, GiftForm
 from .models import Party, Gift
 from django.views import View
@@ -97,5 +99,40 @@ class DeletePartyView(View):
         party = Party.objects.get(id=party_id)
         party.delete()
         return redirect("party-list")
+
+
+class EditPartyView(View):
+    def get(self, request, party_id):
+        party = Party.objects.get(id=party_id)
+        data = {'party_name': party.party_name, 'party_date': party.party_date, 'party_time': party.party_time, 'description':party.description}
+        form = AddPartyForm(initial=data)
+        return render(request, "editParty.html", {"party": party, "form": form})
+
+    def post(self, request, party_id):
+        form = AddPartyForm(request.POST)
+        party = Party.objects.get(id=party_id)
+        if form.is_valid():
+            party_name = form.cleaned_data['party_name']
+            party_date = form.cleaned_data['party_date']
+            party_time = form.cleaned_data['party_time']
+            description = form.cleaned_data['description']
+            user = request.user
+            p = Party(party_name=party_name, party_date=party_date, party_time=party_time, description=description, user=user)
+            p.save()
+            return redirect("party-list")
+
+        else:
+            return render(request, 'editParty.html', {'form': form})
+
+
+class PartyDetails(View):
+    def get(self, request, party_id):
+        party = Party.objects.get(id=party_id)
+        return render(request, "detailsParty.html", {'party':party})
+
+
+
+
+
 
 

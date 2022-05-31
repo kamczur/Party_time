@@ -1,0 +1,13 @@
+{% extends "header.html" %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<ul>
+<li> Nazwa imprezy: {{ party.party_name }}</li>
+    <li>Data imprezy : {{ party.party_date }}</li>
+    <li>Godzina rozpoczęcia imprezy: {{ party.party_time }} </li>
+    <li>Opis: {{ party.description }}</li>
+</ul>
+
+{% endblock %}
