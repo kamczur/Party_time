@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import detail
 
 from .forms import NewUserForm, AddPartyForm, GiftForm, GuestForm
 from .models import Party, Gift, Guest
@@ -85,15 +84,23 @@ class AddGiftView(View):
         return render(request, 'gifts.html', {'form':form, 'party':party})
 
     def post(self, request, party_id):
-        party = Party.objects.get(id=party_id)
         form = GiftForm(request.POST)
         if form.is_valid():
             gift_name = form.cleaned_data['gift_name']
             gift_link = form.cleaned_data['gift_link']
             comments = form.cleaned_data['comments']
-            Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments)
+            party = party.set()
+            Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments, party=party)
             return redirect('gifts-list')
         return render(request, 'gifts.html', {'form': form, 'party':party})
+
+
+class GiftsListView(View):
+    def get(self, request, party_id):
+        gifts = Gift.objects.all()
+        party = Party.objects.get(id=party_id)
+        return render(request, "giftsList.html", {"gifts": gifts, "party":party})
+
 
 class DeletePartyView(View):
     def get(self, request, party_id):
@@ -111,8 +118,8 @@ class EditPartyView(View):
 
     def post(self, request, party_id):
         form = AddPartyForm(request.POST)
-        party = Party.objects.get(id=party_id)
         if form.is_valid():
+            party = Party.objects.get(id=party_id)
             party_name = form.cleaned_data['party_name']
             party_date = form.cleaned_data['party_date']
             party_time = form.cleaned_data['party_time']
@@ -120,6 +127,7 @@ class EditPartyView(View):
             user = request.user
             p = Party(party_name=party_name, party_date=party_date, party_time=party_time, description=description, user=user)
             p.save()
+            party.delete()
             return redirect("party-list")
 
         else:
@@ -147,13 +155,16 @@ class GuestsView(View):
             guest_surname = form.cleaned_data['guest_surname']
             number_of_adults = form.cleaned_data['number_of_adults']
             number_of_children = form.cleaned_data['number_of_children']
+            phone_number = form.cleaned_data['phone_number']
             comments = form.cleaned_data['comments']
 
-            Guest.objects.create(guest_name=guest_name, guest_surname=guest_surname, number_of_adults=number_of_adults, number_of_children=number_of_children, comments=comments, party=party)
+            Guest.objects.create(guest_name=guest_name, guest_surname=guest_surname, number_of_adults=number_of_adults,
+                                 number_of_children=number_of_children, phone_number=phone_number, comments=comments, party=party)
             messages.success(request, "Zapisałeś się na imprezę")
             return redirect("last-page")
         else:
             return render(request, 'guests.html', {'form': form})
+
 
 class LastPageView(View):
     def get(self, request, party_id):

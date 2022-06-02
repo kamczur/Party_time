@@ -3,7 +3,7 @@ from datetime import time, date
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.core.validators import URLValidator
+from django.core.validators import URLValidator, MaxLengthValidator, MinLengthValidator, DecimalValidator
 
 
 class NewUserForm(UserCreationForm):
@@ -36,5 +36,5 @@ class GuestForm(forms.Form):
 	guest_surname = forms.CharField(label="Nazwisko")
 	number_of_adults = forms.IntegerField(label="Liczba osób dorosłych")
 	number_of_children = forms.IntegerField(label="Liczba dzieci")
-	phone_number = forms.IntegerField(label="Numer telefonu")
+	phone_number = forms.IntegerField(label="Numer telefonu", validators=[DecimalValidator(9,0)])
 	comments = forms.CharField(label="Uwagi")

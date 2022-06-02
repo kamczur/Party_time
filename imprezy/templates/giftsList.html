@@ -4,15 +4,15 @@
 {% load crispy_forms_tags %}
 
     <tbody>
+    <h2>Lista prezentów :</h2>
+{% for gift in gifts %}
 
-    <h2>Lista prezentów na imprezę : {{ party.party_name }}</h2>
-
-    <p>Nazwa : {{ gift.gift_name }}</p>
+        <p>Nazwa : {{ gift.gift_name }}</p>
         <p>Link : {{ gift.gift_link }}</p>
         <p>Komentarz : {{ gift.comments }}</p>
+{% endfor %}
 
-  <a <button class="btn btn-primary" href="/gifts/{{ party.id }}/">Powrót </button></a>
-
+<button class="btn btn-primary" type="submit"><a href="/add_gift/">Dodaj kolejny prezent</a></button>
   </tbody>
 
 {% endblock %}
