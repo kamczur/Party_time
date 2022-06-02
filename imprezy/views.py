@@ -2,8 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import detail
 
-from .forms import NewUserForm, AddPartyForm, GiftForm
-from .models import Party, Gift
+from .forms import NewUserForm, AddPartyForm, GiftForm, GuestForm
+from .models import Party, Gift, Guest
 from django.views import View
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
@@ -89,10 +89,8 @@ class AddGift(View):
             gift_name = form.cleaned_data['gift_name']
             gift_link = form.cleaned_data['gift_link']
             comments = form.cleaned_data['comments']
-            gift = Gift.objects.create(gift_name=gift_name)
-            return redirect("gift-list", gift_id=gift.id)
-        else:
-            return render(request, 'gifts.html', {'form': form})
+            gift = Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments)
+        return render(request, 'gifts.html', {'form': form}, gift_id=gift.id)
 
 class DeletePartyView(View):
     def get(self, request, party_id):
@@ -125,10 +123,41 @@ class EditPartyView(View):
             return render(request, 'editParty.html', {'form': form})
 
 
-class PartyDetails(View):
+class PartyDetailsView(View):
     def get(self, request, party_id):
         party = Party.objects.get(id=party_id)
         return render(request, "detailsParty.html", {'party':party})
+
+
+class GuestsView(View):
+
+    def get(self, request, party_id):
+        form = GuestForm()
+        party = Party.objects.get(id=party_id)
+        return render(request, 'guests.html', {'form':form, 'party':party})
+
+    def post(self, request, party_id):
+        party = Party.objects.get(id=party_id)
+        form = GuestForm(request.POST)
+        if form.is_valid():
+            guest_name = form.cleaned_data['guest_name']
+            guest_surname = form.cleaned_data['guest_surname']
+            number_of_adults = form.cleaned_data['number_of_adults']
+            number_of_children = form.cleaned_data['number_of_children']
+            comments = form.cleaned_data['comments']
+
+            Guest.objects.create(guest_name=guest_name, guest_surname=guest_surname, number_of_adults=number_of_adults, number_of_children=number_of_children, comments=comments, party=party)
+            messages.success(request, "Zapisałeś się na imprezę")
+            return redirect("last-page")
+        else:
+            return render(request, 'guests.html', {'form': form})
+
+class LastPageView(View):
+    def get(self, request, party_id):
+        party = Party.objects.get(id=party_id)
+        return render(request, "lastPage.html", {'party': party})
+
+
 
 
 

@@ -21,6 +21,9 @@ class Gift(models.Model):
 class Guest(models.Model):
     guest_name = models.CharField(max_length=64)
     guest_surname = models.CharField(max_length=64)
+    number_of_adults = models.IntegerField(null=True)
+    number_of_children = models.IntegerField(null=True)
+    comments = models.CharField(null=True, max_length=256)
     party = models.ForeignKey(Party, on_delete=models.CASCADE)
 
 

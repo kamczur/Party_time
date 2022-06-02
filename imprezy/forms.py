@@ -30,3 +30,11 @@ class GiftForm(forms.Form):
 	gift_name = forms.CharField(label="Nazwa prezentu")
 	gift_link = forms.CharField(validators=[URLValidator()], label="link do prezentu")
 	comments = forms.CharField(label="komentarz")
+
+class GuestForm(forms.Form):
+	guest_name = forms.CharField(label="Imię")
+	guest_surname = forms.CharField(label="Nazwisko")
+	number_of_adults = forms.IntegerField(label="Liczba osób dorosłych")
+	number_of_children = forms.IntegerField(label="Liczba dzieci")
+	phone_number = forms.IntegerField(label="Numer telefonu")
+	comments = forms.CharField(label="Uwagi")
