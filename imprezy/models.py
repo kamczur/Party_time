@@ -16,6 +16,8 @@ class Party(models.Model):
 
 class Gift(models.Model):
     gift_name = models.CharField(max_length=255)
+    gift_link = models.URLField(null=True)
+    comments = models.CharField(null=True, max_length=256)
     party = models.ManyToManyField(Party)
 
 class Guest(models.Model):

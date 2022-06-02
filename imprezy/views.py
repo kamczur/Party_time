@@ -78,19 +78,22 @@ class PartiesListView(LoginRequiredMixin, View):
         return render(request, "parties.html", context={"parties": parties})
 
 
-class AddGift(View):
-    def get(self, request):
+class AddGiftView(View):
+    def get(self, request, party_id):
+        party = Party.objects.get(id=party_id)
         form = GiftForm()
-        return render(request, 'gifts.html', {'form':form})
+        return render(request, 'gifts.html', {'form':form, 'party':party})
 
-    def post(self, request):
+    def post(self, request, party_id):
+        party = Party.objects.get(id=party_id)
         form = GiftForm(request.POST)
         if form.is_valid():
             gift_name = form.cleaned_data['gift_name']
             gift_link = form.cleaned_data['gift_link']
             comments = form.cleaned_data['comments']
-            gift = Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments)
-        return render(request, 'gifts.html', {'form': form}, gift_id=gift.id)
+            Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments)
+            return redirect('gifts-list')
+        return render(request, 'gifts.html', {'form': form, 'party':party})
 
 class DeletePartyView(View):
     def get(self, request, party_id):
