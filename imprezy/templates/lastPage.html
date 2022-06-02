@@ -2,19 +2,17 @@
 {% block content %}
 
 {% load crispy_forms_tags %}
+
     <tbody>
-    {% for party in parties %}
+
     <h2>Dziękujemy, zapisałeś się na imprezę : {{ party.party_name }}</h2>
 
-    <p> {{ party.party_date }}</p>
-        <p>{{ party.party_time }}</p>
-        <p>{{ party.description }}</p>
+    <p>Data : {{ party.party_date }}</p>
+        <p>Godzina : {{ party.party_time }}</p>
+        <p>Opis : {{ party.description }}</p>
 
   <a <button class="btn btn-primary" href="/gifts/{{ party.id }}/">Wróć do listy prezentów </button></a>
-{% endfor %}
+
   </tbody>
-
-
-
 
 {% endblock %}

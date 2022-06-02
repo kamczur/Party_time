@@ -155,7 +155,7 @@ class GuestsView(View):
 class LastPageView(View):
     def get(self, request, party_id):
         party = Party.objects.get(id=party_id)
-        return render(request, "lastPage.html", {'party': party})
+        return render(request, "lastPage.html", {'party':party})
 
 
 

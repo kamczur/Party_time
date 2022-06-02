@@ -7,7 +7,8 @@
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button class="btn btn-primary" type="submit">Potwierdź obecność</button>
+    <button class="btn btn-primary" type="submit"><a href="/last_page/{{ party.id }}/">Potwierdź obecność</a></button>
+
 </form>
 
 {% endblock %}
