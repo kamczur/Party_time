@@ -82,23 +82,21 @@ class AddGiftView(View):
         form = GiftForm()
         return render(request, 'gifts.html', {'form':form})
 
-    def post(self, request, party_id):
+    def post(self, request):
         form = GiftForm(request.POST)
         if form.is_valid():
             gift_name = form.cleaned_data['gift_name']
             gift_link = form.cleaned_data['gift_link']
             comments = form.cleaned_data['comments']
-            party = party.set()
-            Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments, party=party)
+            Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments)
             return redirect('gifts-list')
-        return render(request, 'gifts.html', {'form': form, 'party':party})
+        return render(request, 'gifts.html', {'form': form})
 
 
 class GiftsListView(View):
-    def get(self, request, party_id):
+    def get(self, request):
         gifts = Gift.objects.all()
-        party = Party.objects.get(id=party_id)
-        return render(request, "giftsList.html", {"gifts": gifts, "party":party})
+        return render(request, "giftsList.html", {"gifts": gifts})
 
 
 class DeletePartyView(View):

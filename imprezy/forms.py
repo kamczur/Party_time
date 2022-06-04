@@ -36,5 +36,5 @@ class GuestForm(forms.Form):
 	guest_surname = forms.CharField(label="Nazwisko")
 	number_of_adults = forms.IntegerField(label="Liczba osób dorosłych")
 	number_of_children = forms.IntegerField(label="Liczba dzieci")
-	phone_number = forms.IntegerField(label="Numer telefonu", validators=[DecimalValidator(9,0)])
+	phone_number = forms.IntegerField(label="Numer telefonu")
 	comments = forms.CharField(label="Uwagi")
