@@ -88,7 +88,7 @@ class AddGiftView(View):
             gift_name = form.cleaned_data['gift_name']
             gift_link = form.cleaned_data['gift_link']
             comments = form.cleaned_data['comments']
-            Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments)
+            Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments, availability=False)
             return redirect('gifts-list')
         return render(request, 'gifts.html', {'form': form})
 
@@ -97,6 +97,8 @@ class GiftsListView(View):
     def get(self, request):
         gifts = Gift.objects.all()
         return render(request, "giftsList.html", {"gifts": gifts})
+
+
 
 class DeleteGiftView(View):
     def get(self, request, gift_id):
