@@ -19,11 +19,8 @@ class Gift(models.Model):
     gift_name = models.CharField(max_length=255)
     gift_link = models.URLField(null=True)
     comments = models.CharField(null=True, max_length=256)
-    party = models.ManyToManyField(Party, through="PartyGift")
+    party = models.ManyToManyField(Party)
 
-class PartyGift(models.Model):
-    party = models.ForeignKey(Party, on_delete=models.CASCADE)
-    gift = models.ForeignKey(Gift, on_delete=models.CASCADE)
 
 
 class Guest(models.Model):

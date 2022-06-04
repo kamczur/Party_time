@@ -3,16 +3,82 @@
 
 {% load crispy_forms_tags %}
 
-    <tbody>
-    <h2>Lista prezentów :</h2>
-{% for gift in gifts %}
+    <table class="table">
 
-        <p>Nazwa : {{ gift.gift_name }}</p>
-        <p>Link : {{ gift.gift_link }}</p>
-        <p>Komentarz : {{ gift.comments }}</p>
-{% endfor %}
+  <thead>
+
+    <tr class="d-flex">
+
+      <th scope="col" class="col-1">#</th>
+
+      <th scope="col" class="col-2">Nazwa</th>
+
+      <th scope="col" class="col-2">Link</th>
+
+      <th scope="col" class="col-2">Dostępność</th>
+
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    {% for gift in gifts %}
+
+    <tr class="d-flex">
+
+      <th scope="row" class="col-1">{{ gift.id }}</th>
+
+      <td class="col-1">{{ gift.gift_name }}</td>
+    <td class="col-3">{{ gift.gift_link }}</td>
+
+      {% if gift.reserved %}
+
+        <td class="col-2" style="color:red;">Zarezerwowany</td>
+
+      {% else %}
+
+        <td class="col-2" style="color:green;">Dostępny</td>
+
+      {% endif %}
+
+
+      <td class="col-1">
+
+        <a href="/gift_delete/{{ gift.id }}/">usuń</a>
+
+      </td>
+
+    <td class="col-2">
+
+    <button type="submit" class="btn btn-primary">Zarezerwuj</button>
+    </td>
+
+    <td class="col-1">
+          <div class="form-group">
+
+        <label for="comment">Komentarz</label>
+
+        <textarea class="form-control" id="comment" name="comment"></textarea>
+
+      </div>
+    </td>
+
+
+    </tr>
+
+    {% endfor %}
+
+  </tbody>
+
+</table>
+
+<!-- table -->
 
 <button class="btn btn-primary" type="submit"><a href="/add_gift/">Dodaj kolejny prezent</a></button>
+
+    <button class="btn btn-primary" type="submit"><a href="/party_list/">Wróć do listy imprez</a></button>
+
   </tbody>
 
 {% endblock %}

@@ -98,6 +98,11 @@ class GiftsListView(View):
         gifts = Gift.objects.all()
         return render(request, "giftsList.html", {"gifts": gifts})
 
+class DeleteGiftView(View):
+    def get(self, request, gift_id):
+        gift = Gift.objects.get(id=gift_id)
+        gift.delete()
+        return redirect("gifts-list")
 
 class DeletePartyView(View):
     def get(self, request, party_id):

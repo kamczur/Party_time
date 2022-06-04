@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="43fca78f-50fa-4342-9769-7e0e01b76d49" name="Changes" comment="" />
+    <list default="true" id="43fca78f-50fa-4342-9769-7e0e01b76d49" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/imprezy/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imprezy/templates/giftsList.html" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/templates/giftsList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imprezy/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt_koncowy/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projekt_koncowy/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,6 +94,7 @@
       <workItem from="1653240710988" duration="12711000" />
       <workItem from="1653657861336" duration="32228000" />
       <workItem from="1654029216934" duration="39756000" />
+      <workItem from="1654329915367" duration="4539000" />
     </task>
     <servers />
   </component>
