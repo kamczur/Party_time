@@ -99,6 +99,14 @@ class GiftsListView(View):
         return render(request, "giftsList.html", {"gifts": gifts})
 
 
+class ReserveGiftView(View):
+    def get(self, request):
+        gifts = Gift.objects.all()
+        for gift in gifts:
+            gift.reserved = gift.availability == False
+            return render(request, "giftsList.html", {"gifts":gifts})
+
+
 
 class DeleteGiftView(View):
     def get(self, request, gift_id):
