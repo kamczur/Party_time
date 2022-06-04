@@ -78,10 +78,9 @@ class PartiesListView(LoginRequiredMixin, View):
 
 
 class AddGiftView(View):
-    def get(self, request, party_id):
-        party = Party.objects.get(id=party_id)
+    def get(self, request):
         form = GiftForm()
-        return render(request, 'gifts.html', {'form':form, 'party':party})
+        return render(request, 'gifts.html', {'form':form})
 
     def post(self, request, party_id):
         form = GiftForm(request.POST)
