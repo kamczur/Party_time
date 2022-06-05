@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 
 from .forms import NewUserForm, AddPartyForm, GiftForm, GuestForm
-from .models import Party, Gift, Guest
+from .models import Party, Gift, Guest, GiftReservation
 from django.views import View
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
@@ -88,7 +88,7 @@ class AddGiftView(View):
             gift_name = form.cleaned_data['gift_name']
             gift_link = form.cleaned_data['gift_link']
             comments = form.cleaned_data['comments']
-            Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments, availability=False)
+            Gift.objects.create(gift_name=gift_name, gift_link=gift_link, comments=comments)
             return redirect('gifts-list')
         return render(request, 'gifts.html', {'form': form})
 
@@ -100,11 +100,19 @@ class GiftsListView(View):
 
 
 class ReserveGiftView(View):
-    def get(self, request):
+    def get(self, request, gift_id):
+        gift = Gift.objects.get(id=gift_id)
+        return render(request, "giftsList.html", {"gift":gift})
+
+    def post(self, request, gift_id):
         gifts = Gift.objects.all()
+        gift = Gift.objects.get(id=gift_id)
+        comment = request.POST.get("comment")
+        p = GiftReservation.objects.create(gift=gift, comment=comment)
         for gift in gifts:
-            gift.reserved = gift.availability == False
-            return render(request, "giftsList.html", {"gifts":gifts})
+            gift.reserved = GiftReservation.availability == False
+            p.save()
+        return redirect("gifts-list")
 
 
 

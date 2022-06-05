@@ -18,10 +18,14 @@ class Party(models.Model):
 class Gift(models.Model):
     gift_name = models.CharField(max_length=255)
     gift_link = models.URLField(null=True)
-    comments = models.CharField(null=True, max_length=256)
-    availability = models.BooleanField(default=False)
+    comments = models.TextField(null=True)
     party = models.ManyToManyField(Party)
 
+
+class GiftReservation(models.Model):
+    gift_id = models.ForeignKey(Gift, on_delete=models.CASCADE)
+    comment = models.TextField(null=True)
+    availability = models.BooleanField(default=True)
 
 
 class Guest(models.Model):
