@@ -1,0 +1,17 @@
+{% extends "header.html" %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+    <tbody>
+
+    <h2>Dziękujemy, zarezerwowałeś prezent  : {{ gift.gift_name }}</h2>
+
+    <p>Link : {{ gift.gift_link }}</p>
+        <p>Opis : {{ gift.comments }}</p>
+
+  <a <button class="btn btn-primary" href="/">Powrót </button></a>
+
+  </tbody>
+
+{% endblock %}

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from imprezy.views import (register_request, homepage, login_request, logout_request, AddParty,
-                           PartiesListView, AddGiftView, GiftsListView, ReserveGiftView, DeleteGiftView, DeletePartyView, EditPartyView, PartyDetailsView,
+                           PartiesListView, AddGiftView, GiftsListView, ReserveGiftView, GiftReservedView, DeleteGiftView, DeletePartyView, EditPartyView, PartyDetailsView,
                            GuestsView, LastPageView)
 
 urlpatterns = [
@@ -31,6 +31,7 @@ urlpatterns = [
     path('gifts_list/', GiftsListView.as_view(), name="gifts-list"),
     path('gift_delete/<int:gift_id>/', DeleteGiftView.as_view(), name="delete-gift"),
     path('gift_reserve/<int:gift_id>/', ReserveGiftView.as_view(), name="reserve-gift"),
+    path('gift_reserved/<int:gift_id>/', GiftReservedView.as_view(), name="reserved-gift"),
     path('party_delete/<int:party_id>/', DeletePartyView.as_view(), name="delete-party"),
     path('party_edit/<int:party_id>/', EditPartyView.as_view(), name="edit-party"),
     path('party_details/<int:party_id>/', PartyDetailsView.as_view(), name="party-details"),

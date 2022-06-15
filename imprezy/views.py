@@ -143,6 +143,15 @@ class ReserveGiftView(View):
         return render(request, "giftsList.html", {"gift": gift})
 
 
+class GiftReservedView(View):
+    """displays last page
+    :return: Last Page Html
+    """
+    def get(self, request, gift_id):
+        gift = Gift.objects.get(id=gift_id)
+        return render(request, "giftReserved.html", {'gift':gift})
+
+
 class DeleteGiftView(View):
     """delete gift
     :return: Gifts List Html"""
