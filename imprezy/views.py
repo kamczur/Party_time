@@ -31,7 +31,7 @@ def register_request(request):
         else:
             messages.error(request, "Rejestracja nie powiodła się. Podano błędne informacje.")
     form = NewUserForm()
-    return render (request=request, template_name="register.html", context={"register_form":form})
+    return render(request=request, template_name="register.html", context={"register_form": form})
 
 
 def login_request(request):
@@ -131,20 +131,16 @@ class GiftsListView(View):
 class ReserveGiftView(View):
     """allows the user to reserve a gift to buy
     :return: Gifts List html"""
-
     def get(self, request, gift_id):
         gift = Gift.objects.get(id=gift_id)
         return render(request, "giftsList.html", {"gift": gift})
 
     def post(self, request, gift_id):
-        gifts = Gift.objects.all()
         gift = Gift.objects.get(id=gift_id)
         comment = request.POST.get("comment")
-        p = GiftReservation.objects.create(gift=gift, comment=comment, availability=False)
-        for gift in gifts:
-            gift.reserved = GiftReservation.availability == False
-            p.save()
-            return redirect('gifts-list')
+        gift.reserved = GiftReservation.objects.create(gift=gift, comment=comment, availability=False)
+        Gift.save()
+        return redirect('gifts-list')
 
 
 class DeleteGiftView(View):
