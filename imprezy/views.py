@@ -138,14 +138,16 @@ class ReserveGiftView(View):
     def post(self, request, gift_id):
         gift = Gift.objects.get(id=gift_id)
         comment = request.POST.get("comment")
-        Gift.objects.create(gift=gift, comment=comment, availability=False)
+        #Gift.objects.create(gift=gift, comment=comment, availability=False)
+        gift.comment = comment
+        gift.availability = False
         gift.save()
         return render(request, "giftsList.html", {"gift": gift})
 
 
 class GiftReservedView(View):
-    """displays last page
-    :return: Last Page Html
+    """displays page with gift details
+    :return: Gift Reserved Html
     """
     def get(self, request, gift_id):
         gift = Gift.objects.get(id=gift_id)
