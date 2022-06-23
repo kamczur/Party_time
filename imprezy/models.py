@@ -21,7 +21,7 @@ class Gift(models.Model):
     comments = models.TextField(null=True)
     availability = models.BooleanField(default=True)
     reservation_comment = models.TextField(null=True)
-    party = models.ManyToManyField(Party)
+    #party = models.ManyToManyField(Party)
 
 
 class Guest(models.Model):
