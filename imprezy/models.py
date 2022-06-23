@@ -19,10 +19,12 @@ class Gift(models.Model):
     gift_name = models.CharField(max_length=255)
     gift_link = models.URLField(null=True)
     comments = models.TextField(null=True)
-    availability = models.BooleanField(default=True)
-    reservation_comment = models.TextField(null=True)
     party = models.ManyToManyField(Party)
 
+class GiftReservation(models.Model):
+    availability = models.BooleanField(default=True)
+    reservation_comment = models.TextField(null=True)
+    gift = models.ForeignKey(Gift, on_delete=models.CASCADE)
 
 class Guest(models.Model):
     guest_name = models.CharField(max_length=64)

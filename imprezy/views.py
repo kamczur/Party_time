@@ -3,7 +3,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 
 from .forms import NewUserForm, AddPartyForm, GiftForm, GuestForm
-from .models import Party, Gift, Guest
+from .models import Party, Gift, Guest, GiftReservation
 from django.views import View
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
@@ -137,11 +137,8 @@ class ReserveGiftView(View):
 
     def post(self, request, gift_id):
         gift = Gift.objects.get(id=gift_id)
-        comment = request.POST.get("comment")
-        #Gift.objects.create(gift=gift, comment=comment, availability=False)
-        gift.comment = comment
-        gift.availability = False
-        gift.save()
+        reservation_comment = request.POST.get("reservation_comment")
+        GiftReservation.objects.create(gift=gift, reservation_comment=reservation_comment, availability=False)
         return render(request, "giftsList.html", {"gift": gift})
 
 

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43fca78f-50fa-4342-9769-7e0e01b76d49" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imprezy/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imprezy/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +118,7 @@
       <workItem from="1654450896524" duration="2161000" />
       <workItem from="1654717071337" duration="5722000" />
       <workItem from="1655235218234" duration="17219000" />
-      <workItem from="1655911976527" duration="6935000" />
+      <workItem from="1655911976527" duration="7801000" />
     </task>
     <servers />
   </component>
