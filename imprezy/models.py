@@ -19,7 +19,7 @@ class Gift(models.Model):
     gift_name = models.CharField(max_length=255)
     gift_link = models.URLField(null=True)
     comments = models.TextField(null=True)
-    #availability = models.BooleanField(default=True)
+    availability = models.BooleanField(default=True)
     reservation_comment = models.TextField(null=True)
     party = models.ManyToManyField(Party)
 
