@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="43fca78f-50fa-4342-9769-7e0e01b76d49" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/imprezy/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/imprezy/models.py" afterDir="false" />
-    </list>
+    <list default="true" id="43fca78f-50fa-4342-9769-7e0e01b76d49" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +115,7 @@
       <workItem from="1654450896524" duration="2161000" />
       <workItem from="1654717071337" duration="5722000" />
       <workItem from="1655235218234" duration="17219000" />
-      <workItem from="1655911976527" duration="5636000" />
+      <workItem from="1655911976527" duration="6332000" />
     </task>
     <servers />
   </component>
